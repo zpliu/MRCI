@@ -1,9 +1,3 @@
-//------------------------------------------------
-// Aim: Estimate the join effect size distribution
-// Author: Zipeng Liu
-// Email: zpliu07@hku.hk
-
-//------------------------------------------------
 #include "./utilities.hpp"
 
 #include <cstdlib>
