@@ -41,7 +41,7 @@ threadnum=20 # thread number
 Rscriptcmd=/PATH/TO/R_X.X.X/bin/Rscript   # In case of multiple R versions, assign the corresponding Rscript version
 
 ### Location of MRCI folder
-MRCI_scriptDIR=/PATH/OF/MRCI_v1.0
+MRCI_scriptDIR=/PATH/TO/MRCI
 
 ### Location of GWAS summmary statistic data
 gwas_Y1_file=$MRCI_scriptDIR/example/Y1.gwas.gz
