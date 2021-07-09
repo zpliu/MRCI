@@ -13,6 +13,8 @@ library(ggplot2)
 library(gridExtra)
 library(dplyr)
 ```
+### LD data
+Download the LD data file (~150MB) from [here](https://www.dropbox.com/s/hyi6huw14hg4r2w/LDwindow1MB_cutoff0.1.RData?dl=0) and put it into `LDdata` folder.
 ## Input format
 The input of MRCI are GWAS summary statistic of the two phenotypes. The required column and header names are as follows:
 ```
