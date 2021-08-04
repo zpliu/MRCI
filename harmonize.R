@@ -54,7 +54,7 @@ trait.type.Y2 <- check_K_w(args$prevalence_Y2, args$caseProp_Y2, "Y2");
 gwasdata <- readGWASdata(
 				gwas_Y1_file=args$gwas_Y1_file,
 				gwas_Y2_file=args$gwas_Y2_file,
-				ld_str_file=args$ld_str_file,
+				ld_str_file=paste0(args$scriptDIR, "/", args$ld_str_file),
 				MHCopt=args$MHCopt,
 				chisq_thresh=chisq_thresh,
 				stdb_thresh=stdb_thresh,
