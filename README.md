@@ -43,7 +43,7 @@ WORKINGDIR="FOLDER-PATH-TO-SAVE-RESULTS"
 threadnum=20 # thread number
 Rscriptcmd=/PATH/TO/R_X.X.X/bin/Rscript   # In case of multiple R versions, assign the corresponding Rscript version
 
-### Location of MRCI folder
+### Location of MRCI script folder
 MRCI_scriptDIR=/PATH/TO/MRCI
 
 ### Location of GWAS summmary statistic data
