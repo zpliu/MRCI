@@ -103,12 +103,16 @@ p.weight <- pltweight()
 
 
 # -------------------------------------------------
-### LLK compare: full vs modmodavg
+### full vs modmodavg
 # -------------------------------------------------
 llk.comp4full <- llk.modavg <- 0.0;
 tollk <- args$tollk # proportion of llk.comp4full
 
 est <- read.table(file=estFullFile, header=T, fill=T, stringsAsFactors=FALSE)
+pi1.pval.full <- as.numeric(est[1,4])
+pi2.pval.full <- as.numeric(est[2,4])
+hsq1.full <- as.numeric(est[12,2])
+hsq2.full <- as.numeric(est[13,2])
 llk.comp4full <- as.numeric(est[22,2])
 
 est <- read.table(file=estAvgFile, header=T, fill=T, stringsAsFactors=FALSE)
@@ -121,13 +125,16 @@ wt.comp3noh2 <- as.numeric(strsplit( grep("w.optim.comp3noh2", txt, value=TRUE),
 wt.comp3h1h2 <- as.numeric(strsplit( grep("w.optim.comp3h1h2", txt, value=TRUE), split="=")[[1]][2])
 wt.comp2pleio <- as.numeric(strsplit( grep("w.optim.comp2pleio", txt, value=TRUE), split="=")[[1]][2])
 
-wt.chkpt <- max(c(wt.comp3noh1, wt.comp3noh2, wt.comp3h1h2, wt.comp2pleio))*0.9
-final.if.full <- ! ((llk.modavg > llk.comp4full + llk.comp4full*tollk) & (wt.comp4full < wt.chkpt) )
+cond.1 <- (llk.modavg > llk.comp4full + llk.comp4full * tollk)
+cond.2 <- (hsq1.full < 0.05) & (pi1.pval.full > 0.05)
+cond.3 <- (hsq2.full < 0.05) & (pi2.pval.full > 0.05)
+final.if.modavg <- cond.1 | cond.2 | cond.3
 
-### Establish a file
+
+### Create a file
 outfinalfile <- paste0(args$outprefix4finalres,".estimate.txt")
 
-if (final.if.full) {
+if (!final.if.modavg) {
 	file.copy(estFullFile, outfinalfile, overwrite=TRUE)
 	write("# Final model: comp4full \n", file=outfinalfile, append=TRUE)
 } else {
@@ -262,7 +269,7 @@ for (i in 1:length(suffix)) {
 
 legend.name <- c(bquote(italic(s["1,2,C"])~" (final)"), bquote(italic(s[avg])))
 sel.res <- c("final", "other")
-if (!final.if.full) {
+if (final.if.modavg) {
 	legend.name <- c(bquote(italic(s[avg])~" (final)"), bquote(italic(s["1,2,C"])))
 	sel.res <- c("other", "final")
 }
